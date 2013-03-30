@@ -16,33 +16,7 @@ if (typeof String.prototype.startsWith != 'function') {
   };
 }
 
-app.get('/', function (req, res) {
-  
-  script_url = 'http://localhost';
-  if(process.env.PORT) {
-    script_url = 'http://defiantly-not.herokuapp.com';
-  }
-  
-  res.render(__dirname + '/public/index.html', {
-    script_url: script_url,
-    query: query
-  });
-  
-});
-
-app.get('/style.css', function (req, res) {
-  res.sendfile(__dirname + '/public/style.css');
-});
-
-app.get('/tweets.js', function (req, res) {
-  res.sendfile(__dirname + '/public/tweets.js');
-});
-
-app.get('/timeago.js', function (req, res) {
-  res.sendfile(__dirname + '/public/timeago.js');
-});
-
-
+console.log("STARTING SERVER");
 var io = require('socket.io').listen(app);
 // Heroku won't actually allow us to use WebSockets
 // so we have to setup polling instead.
