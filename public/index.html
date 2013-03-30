@@ -1,0 +1,26 @@
+!!! 5
+html(lang="en")
+  head
+    title Defiantly Not
+    meta(name='viewport', content='width=device-width,user-scalable=no')
+    link(href='http://fonts.googleapis.com/css?family=Nobile', rel='stylesheet', type='text/css')
+    link(href='/style.css', rel='stylesheet', type='text/css')
+    script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+    script(type='text/javascript', src='/timeago.js')
+    script(type='text/javascript', src='/socket.io/socket.io.js')
+    script(type='text/javascript', src='/tweets.js')
+  body
+    #loading
+      span Waiting for someone to say it...
+    #container
+      .content 
+        p.pending
+          span#number 0
+          span &nbsp;queued /&nbsp;
+          span#total_number 0
+          span &nbsp;total
+          
+        p.evicted Evicted:&nbsp;
+          span#evicted_tweet
+        div#tweet
+        .clearboth 
