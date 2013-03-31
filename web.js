@@ -2,13 +2,14 @@ var express = require('express');
 var sys = require('sys');
 var twitter = require('twitter');
 var logging = require('node-logging');
+var query = "defiantly";
 
 logging.setLevel('error');
 
 var app = express.createServer();
 app.register('.html', require('jade'));
 app.set("view options", { layout: false });
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3001);
 
 if (typeof String.prototype.startsWith != 'function') {
   String.prototype.startsWith = function (str){
@@ -16,19 +17,13 @@ if (typeof String.prototype.startsWith != 'function') {
   };
 }
 
-console.log("STARTING SERVER");
 var io = require('socket.io').listen(app);
-// Heroku won't actually allow us to use WebSockets
-// so we have to setup polling instead.
-// https://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku
 io.configure(function () {
   io.set("transports", ["xhr-polling"]);
   io.set("polling duration", 10);
 });
-//io.set('transports', ['xhr-polling']); io.set('polling duration', 10);
-var query = "defiantly";
+
 io.sockets.on('connection', function (socket) { 
-  console.log('STARTING SOCKET CONNECTION');
   twit.stream('user', {track: query}, function(stream) {
     stream.on('data', function (data) {
       if(data.text) {
@@ -39,8 +34,8 @@ io.sockets.on('connection', function (socket) {
       }
     });
   });
+
   socket.on('disconnect', function () {
-    console.log('SOCKET DISCONNECTED');
   });
 });
 
