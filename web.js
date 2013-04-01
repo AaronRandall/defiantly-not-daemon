@@ -53,9 +53,9 @@ function tweetLiteraryGeniusIfNeedbe(tweet) {
   // If 'definitely' and 'defiantly' are mentioned, and 'defiantly_not' is NOT mentioned, and the tweet isn't from me, tweet a response
   if ((lcText.indexOf('definitely') >= 0) && 
       (lcText.indexOf('defiantly') >= 0) && 
-      (lcText.indexOf('defiantly_not') < 0) 
-      && tweet.user.screen_name != "defiantly_not"
-      && randomlyDecideWhetherToTweet()) {
+      (lcText.indexOf('defiantly_not') < 0) && 
+      (tweet.user.screen_name != "defiantly_not") &&
+      (randomlyDecideWhetherToTweet())) {
     response = createTweetResponse("@" + tweet.user.screen_name);
     // Tweet with 10 second delay
     setTimeout(function(){ 
