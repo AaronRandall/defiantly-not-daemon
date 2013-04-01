@@ -98,6 +98,6 @@ function createTweetResponse(screen_name) {
 }
 
 function randomlyDecideWhetherToTweet() {
-  var willTweet = (Math.floor(Math.random()*7) == 1);
+  var willTweet = (Math.floor(Math.random()*20) == 1);
   return willTweet;
 }
