@@ -8,16 +8,16 @@ var enableTweetingResponses = true;
 
 logging.setLevel('error');
 
-var app = express.createServer();
-app.register('.html', require('jade'));
-app.set("view options", { layout: false });
-app.listen(process.env.PORT || 3001);
-
 if (typeof String.prototype.startsWith != 'function') {
   String.prototype.startsWith = function (str){
     return this.indexOf(str) == 0;
   };
 }
+
+var app = express.createServer();
+app.register('.html', require('jade'));
+app.set("view options", { layout: false });
+app.listen(process.env.PORT || 3001);
 
 var io = require('socket.io').listen(app);
 io.configure(function () {
