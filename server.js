@@ -62,7 +62,7 @@ function tweetLiteraryGeniusIfNeedbe(tweet) {
       console.log("========================================");
       console.log("Sending Tweet with content: " + response);
       console.log("========================================");
-      twit.post('https://api.twitter.com/1/statuses/update.json', { status: response }, function(err, reply) {
+      twit.post('https://api.twitter.com/1.1/statuses/update.json', { status: response }, function(err, reply) {
         console.log("error occurred whilst tweeting");
         console.log(err);
         console.log(reply);
